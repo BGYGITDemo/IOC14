@@ -1,5 +1,7 @@
 package com.nt.dto;
 
+import java.io.Serializable;
+
 public class CustomerDTO implements Serializable {
 private String cname;
 private String cadd;
