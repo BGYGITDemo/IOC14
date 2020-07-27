@@ -1,32 +1,33 @@
 package com.nt.controller;
 
-import com.nt.dto.CustomerDTO;
-import com.nt.service.CustomerMgmtService;
-import com.nt.vo.CustomerVO;
+
+import com.nt.dto.EmployeeDTO;
+import com.nt.service.EmployeeMgmtService;
+import com.nt.vo.EmployeeVO;
 
 public  final class MainController {
-	private CustomerMgmtService service;
+	private EmployeeMgmtService service;
  
 	  //for constructor injection
-	public MainController(CustomerMgmtService service) {
+	public MainController(EmployeeMgmtService service) {
 		this.service = service;
 	}
 	
-	public  String  processCustomer(CustomerVO  vo)throws Exception{
-		CustomerDTO dto=null;
+	public  String  processStudent(EmployeeVO  vo)throws Exception{
+		EmployeeDTO dto=null;
 		String result=null;
 		//convert  VO class object to DTO class object
-		dto=new CustomerDTO();
-		dto.setCname(vo.getCname());
-		dto.setCadd(vo.getCadd());
-		dto.setPamt((vo.getpAmt()));
-		dto.setRate((vo.getRate()));
-		dto.setTime((vo.getTime()));
+		dto=new EmployeeDTO();
+		dto.setEname(vo.getEname());
+		dto.setEadd(vo.getEadd());
+		dto.setDoj(vo.getDoj());
+		dto.setBasicSalary(Float.parseFloat(vo.getBasicSalary()));
 		//use service
-		result=service.calculateIntrestAmount(dto);
+		result=service.registerEmployee(dto);
 		return result;
 		
 	}
+
 	
 	
 

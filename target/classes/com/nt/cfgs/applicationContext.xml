@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
 	<!-- Configuration DataSource -->
 	<bean id="ds"
@@ -15,18 +15,19 @@
 	</bean>
 
 	<!--cfg DAO class -->
-	<bean id="cdao" class="com.nt.dao.CustomerDAOImpl">
+	<bean id="edao" class="com.nt.dao.EmployeeDAOImpl">
 		<constructor-arg ref="ds" />
 	</bean>
 
 	<!--cfg service class -->
-	<bean id="cservice"
-		class="com.nt.service.CustomerMgmtServiceImpl">
-		<constructor-arg ref="cdao" />
+	<bean id="eservice" class="com.nt.service.EmployeeMgmtServiceImpl">
+		<constructor-arg ref="edao" />
 	</bean>
 
-<!-- 	cfg Controller class -->
+	<!-- cfg Controller class -->
 	<bean id="controller" class="com.nt.controller.MainController">
-		<constructor-arg ref="cservice" />
+		<constructor-arg ref="eservice" />
 	</bean>
+
+
 </beans>

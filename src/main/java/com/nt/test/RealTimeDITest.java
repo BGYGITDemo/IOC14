@@ -6,49 +6,48 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
 import com.nt.controller.MainController;
-import com.nt.vo.CustomerVO;
+import com.nt.vo.EmployeeVO;
 
 public class RealTimeDITest {
 
 	public static void main(String[] args) {
 		Scanner sc = null;
-		String name = null, cadd = null, pamt = null, rate = null, time = null;
-		CustomerVO vo = null;
+		String ename = null, eadd = null, doj = null, basicSalary = null;
+		EmployeeVO vo = null;
 		DefaultListableBeanFactory factory = null;
 		XmlBeanDefinitionReader reader = null;
 		MainController controller = null;
-		String result=null;
+		String result = null;
 		// read inputs
 		sc = new Scanner(System.in);
-		System.out.println("Enter Customer Name::");
-		name = sc.next();
-		System.out.println("Enter Customer Address::");
-		cadd = sc.next();
-		System.out.println("Enter Principle Amount::");
-		pamt = sc.next();
-		System.out.println("Enter Rate of Interst::");
-		rate = sc.next();
-		System.out.println("Enter Time of Amount::");
-		time = sc.next();
-//Store inputs in VO class obj
-		vo = new CustomerVO();
-		vo.setCname(name);
-		vo.setCadd(cadd);
-		vo.setpAmt(pamt);
-		vo.setRate(rate);
-		vo.setTime(time);
-//create BeanFactroy IOC Cotainer
+		System.out.println("enter Employee name :: ");
+		ename = sc.next();
+		System.out.println("Enter Employee Addrs::");
+		eadd = sc.next();
+		System.out.println("Enter Employee Date of Joining::");
+		doj = sc.next();
+		System.out.println("Enter Basic Salary::");
+		basicSalary = sc.next();
+	
+		// Store inputs in VO class object
+		vo = new EmployeeVO();
+		vo.setEname(ename);
+		vo.setEadd(eadd);
+		vo.setDoj(doj);
+		vo.setBasicSalary(basicSalary);
+		
+		// create BEanFacory IOC container
 		factory = new DefaultListableBeanFactory();
-		reader=new XmlBeanDefinitionReader(factory);
+		reader = new XmlBeanDefinitionReader(factory);
 		reader.loadBeanDefinitions("com/nt/cfgs/applicationContext.xml");
-//get Controller Bean class obj
+		// get Controller Bean class object..
 		controller = factory.getBean("controller", MainController.class);
-//invoke the method
+		// invoke the method
 		try {
-			result = controller.processCustomer(vo);
+			result = controller.processStudent(vo);
 			System.out.println(result);
 		} catch (Exception e) {
-			System.out.println("Enternal Problem");
+			System.out.println("Internal Problem");
 			e.printStackTrace();
 		}
 	}// main
